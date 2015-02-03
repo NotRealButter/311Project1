@@ -13,12 +13,12 @@ public class myJPanel extends JPanel implements ActionListener, MouseMotionListe
     JButton ColorRed, ColorBlack, ColorYellow, ColorWhite, BrushThicker, BrushThinner, XCoord, YCoord;
     JLabel labelx, labely;
     Color c = Color.black;
-    Point[] ps = new Point[1000];
-    Color[] colors = new Color[1000];
-    Integer[] thicknessArray = new Integer[1000];
-//    ArrayList<Point> points = new ArrayList();
-//    ArrayList<Color> colors = new ArrayList();
-//    ArrayList<Integer> thicknessArray = new ArrayList();
+//    Point[] ps = new Point[1000];
+//    Color[] colors = new Color[1000];
+//    Integer[] thicknessArray = new Integer[1000];
+    ArrayList<Point> ps = new ArrayList();
+    ArrayList<Color> colors = new ArrayList();
+    ArrayList<Integer> thicknessArray = new ArrayList();
     int i = 0;
     int thickness = 5;
     JPanel p1, p2;
@@ -64,10 +64,10 @@ public class myJPanel extends JPanel implements ActionListener, MouseMotionListe
     {
        super.paintComponent(gg);
                
-       for (int j = 0; j<i; j++)
+       for (int j = 0; j<ps.size(); j++)
        {
-            gg.setColor(colors[j]);
-            gg.fillRect(ps[j].x,ps[j].y, thicknessArray[j], thicknessArray[j]);
+            gg.setColor(colors.get(j));
+            gg.fillRect(ps.get(j).x,ps.get(j).y, thicknessArray.get(j), thicknessArray.get(j));
        }
     }   
     
@@ -109,9 +109,9 @@ public class myJPanel extends JPanel implements ActionListener, MouseMotionListe
         Point pt = evt.getPoint();
 
            
-        ps[i] = pt;
-        colors[i] = c;
-        thicknessArray[i] = thickness;
+        ps.add(pt);
+        colors.add(c);
+        thicknessArray.add(thickness);
         i++;
       repaint();
         String t1 = "x = " + pt.getX();
